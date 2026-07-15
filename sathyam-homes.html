@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sathyam Homes — Unlock the Door to Exceptional Living</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#17140f;
+    --charcoal-2:#221c15;
+    --charcoal-3:#2b2319;
+    --ivory:#f6f1e6;
+    --ivory-2:#efe7d6;
+    --rose:#e2536b;
+    --rose-deep:#b93650;
+    --terracotta:#dd8a3d;
+    --terracotta-deep:#b96a26;
+    --sage:#6f8c68;
+    --ink:#2a2318;
+    --ink-soft:#5c5344;
+    --line: rgba(42,35,24,0.14);
+    --line-light: rgba(246,241,230,0.18);
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    background:var(--ivory);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit; cursor:pointer; border:none; background:none;}
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    line-height:1.05;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+
+  .container{
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:12.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--rose-deep);
+    margin-bottom:18px;
+  }
+  .eyebrow.on-dark{ color:var(--terracotta);}
+  .eyebrow::before{
+    content:"";
+    width:26px; height:1px;
+    background:currentColor;
+    display:block;
+  }
+
+  /* ---------- Door mark (signature element) ---------- */
+  .door-mark{ display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; }
+  .door-mark svg{ width:100%; height:100%; }
+  .door-leaf{ transform-origin: 0% 50%; transition: transform .5s var(--ease); }
+  .door-leaf.right{ transform-origin: 100% 50%; }
+
+  /* Scroll-triggered door divider used before section headings */
+  .door-divider{
+    width:64px; height:44px;
+    margin-bottom:22px;
+    position:relative;
+  }
+  .door-divider svg{ width:100%; height:100%; overflow:visible; }
+  .door-divider .leaf-l, .door-divider .leaf-r{
+    transform-origin: 0% 50%;
+    transition: transform 1s var(--ease);
+  }
+  .door-divider .leaf-r{ transform-origin: 100% 50%; }
+  .door-divider.open .leaf-l{ transform: rotateY(58deg); }
+  .door-divider.open .leaf-r{ transform: rotateY(-58deg); }
+
+  /* ---------- Reveal-on-scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition: opacity .9s var(--ease), transform .9s var(--ease);
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *{ transition-delay: calc(var(--i, 0) * 90ms); }
+
+  /* ================= NAV ================= */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:22px 0;
+    transition: padding .4s var(--ease), background .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  header .container{ display:flex; align-items:center; justify-content:space-between; }
+  header.scrolled{
+    padding:12px 0;
+    background:rgba(23,20,15,0.92);
+    backdrop-filter: blur(10px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.18);
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-name{ font-family:'Fraunces', serif; font-size:19px; color:var(--ivory); letter-spacing:0.02em; }
+  .brand-name b{ color:var(--rose); font-weight:600; }
+
+  nav.primary-links{ display:flex; align-items:center; gap:34px; }
+  nav.primary-links a{
+    color:var(--ivory);
+    font-size:14.5px;
+    font-weight:500;
+    opacity:.88;
+    position:relative;
+    padding:4px 0;
+  }
+  nav.primary-links a:not(.has-dropdown)::after{
+    content:"";
+    position:absolute; left:0; bottom:-2px;
+    width:0; height:1px;
+    background:var(--terracotta);
+    transition:width .35s var(--ease);
+  }
+  nav.primary-links a:not(.has-dropdown):hover::after{ width:100%; }
+  nav.primary-links a:hover{ opacity:1; }
+
+  .has-dropdown{ position:relative; display:flex; align-items:center; gap:6px; }
+  .caret{ width:8px; height:8px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg); margin-top:-3px; transition: transform .3s var(--ease); opacity:.8;}
+  .dropdown-wrap:hover .caret{ transform:rotate(225deg); margin-top:3px; }
+
+  .dropdown-wrap{ position:relative; }
+  .dropdown-panel{
+    position:absolute; top:calc(100% + 18px); left:50%; transform:translateX(-50%) translateY(6px);
+    width:460px;
+    background:var(--ivory);
+    border-radius:14px;
+    padding:22px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px 26px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.28);
+    opacity:0; visibility:hidden;
+    transition: opacity .3s var(--ease), transform .3s var(--ease), visibility .3s;
+  }
+  .dropdown-wrap:hover .dropdown-panel{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+  .dropdown-panel a{
+    display:block; color:var(--ink); font-size:13.5px; font-weight:500;
+    padding:9px 10px; border-radius:8px; transition: background .25s var(--ease), padding-left .25s var(--ease), color .25s var(--ease);
+  }
+  .dropdown-panel a:hover{ background:rgba(226,83,107,0.08); padding-left:16px; color:var(--rose-deep); }
+
+  .nav-cta{
+    background:var(--rose);
+    color:#fff !important;
+    padding:11px 22px;
+    border-radius:100px;
+    font-size:13.5px;
+    font-weight:600;
+    opacity:1 !important;
+    box-shadow:0 6px 20px rgba(226,83,107,0.35);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease);
+  }
+  .nav-cta::after{ display:none !important; }
+  .nav-cta:hover{ transform:translateY(-2px); background:var(--rose-deep); box-shadow:0 10px 26px rgba(226,83,107,0.45); }
+
+  .burger{ display:none; width:28px; height:20px; position:relative; }
+  .burger span{ position:absolute; left:0; right:0; height:2px; background:var(--ivory); transition: transform .35s var(--ease), opacity .35s var(--ease); }
+  .burger span:nth-child(1){ top:0; }
+  .burger span:nth-child(2){ top:9px; }
+  .burger span:nth-child(3){ top:18px; }
+  .burger.active span:nth-child(1){ transform:translateY(9px) rotate(45deg); }
+  .burger.active span:nth-child(2){ opacity:0; }
+  .burger.active span:nth-child(3){ transform:translateY(-9px) rotate(-45deg); }
+
+  /* ================= HERO ================= */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 0%, rgba(226,83,107,0.16), transparent 60%),
+      linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-2) 55%, var(--charcoal) 100%);
+    overflow:hidden;
+    padding:120px 24px 80px;
+  }
+  .hero-grain{
+    position:absolute; inset:0;
+    background-image: radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events:none;
+  }
+  .hero-glow{
+    position:absolute; width:70vw; height:70vw; border-radius:50%;
+    background: radial-gradient(circle, rgba(221,138,61,0.18), transparent 65%);
+    top:-20%; right:-10%;
+    filter:blur(10px);
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift{ from{ transform:translate(0,0);} to{ transform:translate(-40px, 30px);} }
+
+  .hero-inner{ position:relative; z-index:2; max-width:760px; margin:0 auto; }
+
+  .door-stage{
+    width:120px; height:150px;
+    margin:0 auto 30px;
+    perspective:900px;
+  }
+  .door-frame{ position:relative; width:100%; height:100%; }
+  .door-frame svg{ width:100%; height:100%; }
+  .door-panel{
+    transform-origin:0% 50%;
+    transition: transform 1.6s var(--ease);
+    transform: rotateY(0deg);
+  }
+  .door-panel.right{ transform-origin:100% 50%; }
+  .door-stage.opened .door-panel.left{ transform: rotateY(72deg); }
+  .door-stage.opened .door-panel.right{ transform: rotateY(-72deg); }
+  .door-light{ opacity:0; transition:opacity 1.4s var(--ease) .5s; }
+  .door-stage.opened .door-light{ opacity:1; }
+
+  .hero-inner .eyebrow{ justify-content:center; color:var(--terracotta); }
+  .hero h1{
+    color:var(--ivory);
+    font-size:clamp(40px, 7vw, 74px);
+    font-weight:500;
+    letter-spacing:-0.02em;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:400;
+    background:linear-gradient(90deg, var(--rose), var(--terracotta));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p{
+    color:rgba(246,241,230,0.72);
+    font-size:17px;
+    max-width:480px;
+    margin:24px auto 38px;
+    line-height:1.65;
+  }
+  .hero-ctas{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 30px;
+    border-radius:100px;
+    font-size:14.5px; font-weight:600;
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease), color .35s var(--ease);
+  }
+  .btn-solid{ background:var(--rose); color:#fff; box-shadow:0 10px 30px rgba(226,83,107,0.35); }
+  .btn-solid:hover{ background:var(--rose-deep); transform:translateY(-3px); box-shadow:0 14px 34px rgba(226,83,107,0.45); }
+  .btn-outline{ border:1px solid rgba(246,241,230,0.35); color:var(--ivory); }
+  .btn-outline:hover{ background:rgba(246,241,230,0.1); transform:translateY(-3px); border-color:var(--ivory); }
+  .btn-dark{ background:var(--charcoal); color:var(--ivory); }
+  .btn-dark:hover{ background:var(--charcoal-3); transform:translateY(-3px); }
+  .btn-arrow{ transition: transform .35s var(--ease); }
+  .btn:hover .btn-arrow{ transform:translateX(4px); }
+
+  .scroll-cue{
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    color:rgba(246,241,230,0.5); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:linear-gradient(180deg, rgba(246,241,230,0.7), transparent); animation: scrollpulse 2s ease-in-out infinite; }
+  @keyframes scrollpulse{ 0%,100%{ transform:scaleY(1); opacity:.7;} 50%{ transform:scaleY(0.6); opacity:1;} }
+
+  /* ================= BEYOND WALLS BAND ================= */
+  .band-quote{
+    background:var(--charcoal-2);
+    padding:56px 0;
+    text-align:center;
+  }
+  .band-quote p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    color:var(--ivory-2);
+    font-size:clamp(20px, 3vw, 30px);
+  }
+  .band-quote span{ color:var(--terracotta); }
+
+  /* ================= BEYOND EXPECTATIONS ================= */
+  .expect{
+    padding:130px 0;
+    background:var(--ivory);
+  }
+  .expect .container{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:70px;
+    align-items:center;
+  }
+  .expect-heading{
+    font-size:clamp(34px, 4vw, 50px);
+  }
+  .expect-heading .cap{
+    font-weight:700;
+    text-decoration: underline;
+    text-decoration-color: var(--rose);
+    text-decoration-thickness: 2px;
+    text-underline-offset:6px;
+  }
+  .expect-heading .accent-word{ color:var(--terracotta); font-style:italic; font-weight:500; }
+  .expect p.copy{
+    margin:26px 0 30px;
+    color:var(--ink-soft);
+    line-height:1.75;
+    font-size:16px;
+    max-width:440px;
+  }
+  .know-more{
+    display:inline-flex; align-items:center; gap:8px;
+    font-weight:600; font-size:14px; color:var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding-bottom:3px;
+  }
+  .know-more svg{ transition: transform .3s var(--ease); }
+  .know-more:hover svg{ transform:translateX(5px); }
+
+  .expect-visual{ position:relative; }
+  .expect-card{
+    aspect-ratio: 4/5;
+    border-radius:22px;
+    background:
+      linear-gradient(155deg, var(--terracotta) 0%, var(--terracotta-deep) 55%, #a1591f 100%);
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 40px 70px -20px rgba(180,100,30,0.45);
+  }
+  .expect-card .room-shape{
+    position:absolute; inset:0;
+  }
+  .expect-badge{
+    position:absolute; left:-26px; bottom:36px;
+    background:var(--ivory);
+    border-radius:16px;
+    padding:20px 22px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.18);
+    display:flex; align-items:center; gap:14px;
+    width:230px;
+  }
+  .expect-badge .num{ font-family:'Fraunces',serif; font-size:26px; font-weight:600; color:var(--rose); }
+  .expect-badge .lbl{ font-size:12px; color:var(--ink-soft); line-height:1.4; }
+
+  /* ================= PROJECTS ================= */
+  .projects{ padding:70px 0 130px; background:var(--ivory); }
+  .projects-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:30px;
+    margin-bottom:56px; flex-wrap:wrap;
+  }
+  .projects-head h2{ font-size:clamp(32px,4vw,48px); }
+  .projects-head h2 .accent-word{ color:var(--terracotta); font-style:italic; font-weight:500; }
+  .projects-head p{ color:var(--ink-soft); max-width:340px; font-size:15px; line-height:1.6; }
+
+  .project-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:30px; }
+  .project-card{
+    background:#fff;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+  }
+  .project-card:hover{ transform:translateY(-8px); box-shadow:0 30px 60px -20px rgba(42,35,24,0.25); }
+  .project-media{
+    aspect-ratio:16/10.5;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg, #3a3226, #1c1712);
+  }
+  .project-media .interior{ position:absolute; inset:0; }
+  .project-media img,
+  .project-media .fallback-room{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+  .project-card:hover .project-media img,
+  .project-card:hover .fallback-room{ transform:scale(1.08); }
+  .status-pill{
+    position:absolute; top:16px; left:16px;
+    background:rgba(23,20,15,0.75);
+    backdrop-filter:blur(6px);
+    color:var(--ivory);
+    font-size:11.5px; font-weight:600; letter-spacing:0.03em;
+    padding:7px 14px; border-radius:100px;
+    display:flex; align-items:center; gap:7px;
+  }
+  .status-pill::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--sage); box-shadow:0 0 0 3px rgba(111,140,104,0.25); }
+
+  .project-body{ padding:26px 26px 24px; }
+  .project-body h3{ font-size:22px; margin-bottom:6px; }
+  .project-loc{ display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink-soft); margin-bottom:18px; }
+  .project-specs{ display:flex; gap:22px; margin-bottom:22px; padding-bottom:22px; border-bottom:1px solid var(--line); }
+  .spec{ font-size:13px; color:var(--ink-soft); }
+  .spec b{ display:block; font-family:'Fraunces',serif; font-size:16px; color:var(--ink); font-weight:600; }
+  .project-actions{ display:flex; gap:12px; }
+  .project-actions .btn{ padding:12px 20px; font-size:13px; flex:1; justify-content:center; }
+
+  /* ================= TRUST STRIP ================= */
+  .trust{ padding:44px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .trust .container{ display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap; }
+  .trust-label{ font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; white-space:nowrap; }
+  .trust-marks{ display:flex; gap:44px; flex-wrap:wrap; align-items:center; opacity:.75; }
+  .trust-marks span{ font-family:'Fraunces',serif; font-weight:600; font-size:16px; letter-spacing:0.02em; color:var(--ink); }
+
+  /* ================= STATS ================= */
+  .stats{
+    position:relative;
+    padding:130px 0;
+    background: linear-gradient(180deg, var(--charcoal) 0%, #221c17 100%);
+    overflow:hidden;
+  }
+  .stats::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(246,241,230,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(246,241,230,0.05) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 40%, transparent 90%);
+  }
+  .stats .container{ position:relative; z-index:2; }
+  .stats-top{ text-align:center; margin-bottom:70px; }
+  .stats-top h2{ color:var(--ivory); font-size:clamp(30px,4vw,44px); }
+  .stats-top h2 .accent-word{ color:var(--terracotta); font-style:italic; font-weight:500; }
+  .stats-grid{ display:grid; grid-template-columns:repeat(4, 1fr); }
+  .stat{ text-align:center; padding:0 20px; position:relative; }
+  .stat + .stat::before{ content:""; position:absolute; left:0; top:8px; bottom:8px; width:1px; background:rgba(246,241,230,0.14); }
+  .stat .num{
+    font-family:'Fraunces',serif; font-weight:600; font-size:clamp(38px,4.4vw,58px);
+    color:var(--ivory); line-height:1;
+  }
+  .stat .num .suffix{ color:var(--terracotta); }
+  .stat .lbl{ margin-top:14px; font-size:13px; letter-spacing:0.04em; color:rgba(246,241,230,0.6); }
+
+  /* ================= FAQ / CONTACT ================= */
+  .contact-faq{ padding:130px 0; background:var(--ivory); }
+  .contact-faq .container{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:start; }
+
+  .contact-card h2{ font-size:clamp(30px,3.6vw,40px); margin-bottom:16px; }
+  .contact-card > p{ color:var(--ink-soft); line-height:1.7; margin-bottom:34px; max-width:400px; }
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:12.5px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; }
+  .field input, .field textarea{
+    width:100%; border:1px solid var(--line); background:#fff;
+    border-radius:12px; padding:14px 16px; font-family:inherit; font-size:14.5px; color:var(--ink);
+    transition: border-color .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--rose); box-shadow:0 0 0 4px rgba(226,83,107,0.12); }
+  .field textarea{ resize:vertical; min-height:100px; }
+  .contact-card .btn{ margin-top:6px; width:100%; justify-content:center; }
+
+  .faq-tabs{ display:flex; gap:10px; margin-bottom:26px; flex-wrap:wrap; }
+  .faq-tab{
+    padding:10px 20px; border-radius:100px; font-size:13.5px; font-weight:600;
+    background:#fff; border:1px solid var(--line); color:var(--ink-soft);
+    transition: all .3s var(--ease);
+  }
+  .faq-tab.active, .faq-tab:hover{ background:var(--ink); color:var(--ivory); border-color:var(--ink); }
+
+  .faq-item{ border-bottom:1px solid var(--line); }
+  .faq-q{
+    width:100%; display:flex; align-items:center; justify-content:space-between; gap:20px;
+    padding:22px 4px; text-align:left; background:none;
+  }
+  .faq-q .qn{ font-size:12px; color:var(--rose); font-weight:700; margin-right:6px; }
+  .faq-q h4{ font-family:'Fraunces',serif; font-weight:500; font-size:17px; flex:1; }
+  .faq-plus{ width:22px; height:22px; position:relative; flex-shrink:0; }
+  .faq-plus::before, .faq-plus::after{ content:""; position:absolute; background:var(--ink); border-radius:2px; transition: transform .4s var(--ease); }
+  .faq-plus::before{ top:50%; left:0; right:0; height:2px; transform:translateY(-1px); }
+  .faq-plus::after{ left:50%; top:0; bottom:0; width:2px; transform:translateX(-1px); }
+  .faq-item.open .faq-plus::after{ transform:translateX(-1px) rotate(90deg); opacity:0; }
+
+  .faq-a{ max-height:0; overflow:hidden; transition: max-height .5s var(--ease); }
+  .faq-a p{ padding:0 4px 24px; color:var(--ink-soft); font-size:14.5px; line-height:1.75; max-width:520px; }
+  .faq-item.open .faq-a{ max-height:220px; }
+
+  /* ================= NEWSLETTER ================= */
+  .newsletter{
+    background: linear-gradient(120deg, var(--rose) 0%, var(--terracotta) 100%);
+    padding:64px 0;
+  }
+  .newsletter .container{ display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap; }
+  .newsletter h3{ color:#fff; font-size:clamp(24px,3vw,32px); max-width:420px; }
+  .newsletter p{ color:rgba(255,255,255,0.85); margin-top:8px; font-size:14.5px; max-width:400px; }
+  .newsletter-form{ display:flex; gap:10px; }
+  .newsletter-form input{
+    width:280px; max-width:56vw; border:none; border-radius:100px; padding:15px 22px; font-family:inherit; font-size:14px;
+  }
+  .newsletter-form input:focus{ outline:2px solid #fff; }
+  .newsletter-form button{
+    background:var(--charcoal); color:#fff; padding:15px 26px; border-radius:100px; font-weight:600; font-size:14px;
+    transition: transform .3s var(--ease), background .3s var(--ease);
+  }
+  .newsletter-form button:hover{ transform:translateY(-2px); background:#000; }
+
+  /* ================= FOOTER ================= */
+  footer{ background:var(--charcoal); color:rgba(246,241,230,0.7); padding:90px 0 34px; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1.1fr; gap:50px; padding-bottom:60px; }
+  .footer-brand .brand-name{ margin-bottom:18px; }
+  .footer-brand p{ font-size:14px; line-height:1.75; max-width:280px; color:rgba(246,241,230,0.55); }
+  .footer-col h5{ color:var(--ivory); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:22px; font-weight:600; }
+  .footer-col ul li{ margin-bottom:13px; }
+  .footer-col a{ font-size:14.5px; color:rgba(246,241,230,0.65); transition: color .3s var(--ease), padding-left .3s var(--ease); }
+  .footer-col a:hover{ color:var(--terracotta); padding-left:4px; }
+  .footer-col .call-btn{ display:inline-flex; align-items:center; gap:8px; margin-top:10px; background:var(--rose); color:#fff; padding:11px 18px; border-radius:100px; font-size:13px; font-weight:600; }
+  .footer-bottom{ border-top:1px solid rgba(246,241,230,0.12); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+  .footer-bottom p{ font-size:13px; color:rgba(246,241,230,0.45); }
+  .socials{ display:flex; gap:12px; }
+  .socials a{ width:36px; height:36px; border-radius:50%; border:1px solid rgba(246,241,230,0.2); display:flex; align-items:center; justify-content:center; font-size:12px; transition: all .3s var(--ease); }
+  .socials a:hover{ background:var(--rose); border-color:var(--rose); transform:translateY(-3px); }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 980px){
+    nav.primary-links{
+      position:fixed; top:0; right:0; height:100vh; width:min(340px, 82vw);
+      background:var(--charcoal); flex-direction:column; align-items:flex-start; justify-content:flex-start;
+      padding:100px 34px 34px; gap:26px;
+      transform:translateX(100%); transition: transform .5s var(--ease);
+      box-shadow:-20px 0 50px rgba(0,0,0,0.3);
+    }
+    nav.primary-links.open{ transform:translateX(0); }
+    .dropdown-panel{ position:static; opacity:1; visibility:visible; transform:none; width:100%; box-shadow:none; padding:10px 0 0 14px; grid-template-columns:1fr; display:none; background:none; }
+    .dropdown-wrap.open .dropdown-panel{ display:grid; }
+    .burger{ display:block; z-index:120; }
+    .expect .container, .contact-faq .container{ grid-template-columns:1fr; }
+    .expect-visual{ order:-1; }
+    .project-grid{ grid-template-columns:1fr; }
+    .stats-grid{ grid-template-columns:repeat(2,1fr); row-gap:44px; }
+    .stat:nth-child(3)::before{ display:none; }
+    .footer-grid{ grid-template-columns:1fr 1fr; row-gap:44px; }
+    .projects-head{ flex-direction:column; align-items:flex-start; }
+  }
+  @media (max-width: 620px){
+    .footer-grid{ grid-template-columns:1fr; }
+    .stats-grid{ grid-template-columns:1fr 1fr; }
+    .trust .container{ flex-direction:column; align-items:flex-start; }
+    .newsletter .container{ flex-direction:column; align-items:flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  :focus-visible{ outline:2px solid var(--rose); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="container">
+    <a href="#top" class="brand">
+      <span class="door-mark" aria-hidden="true">
+        <svg viewBox="0 0 34 34" fill="none">
+          <rect x="4" y="3" width="26" height="28" rx="3" stroke="#e2536b" stroke-width="1.6"/>
+          <line class="door-leaf left" x1="17" y1="3" x2="17" y2="31" stroke="#e2536b" stroke-width="1.6"/>
+          <circle cx="14.5" cy="17" r="1.3" fill="#e2536b"/>
+        </svg>
+      </span>
+      <span class="brand-name">Sathyam <b>Homes</b></span>
+    </a>
+
+    <nav class="primary-links" id="primaryNav">
+      <a href="#top">Home</a>
+      <a href="#projects">Projects</a>
+      <div class="dropdown-wrap" id="servicesDropdown">
+        <a href="#services" class="has-dropdown">Services <span class="caret"></span></a>
+        <div class="dropdown-panel">
+          <a href="#services">Core Services</a>
+          <a href="#services">Design &amp; Development</a>
+          <a href="#services">NRI Property Consultation</a>
+          <a href="#services">Floor Plan Design</a>
+          <a href="#services">Property Maintenance</a>
+          <a href="#services">CMDA &amp; Building Approval</a>
+          <a href="#services">Property Valuation</a>
+          <a href="#services">Resale &amp; Rental</a>
+        </div>
+      </div>
+      <a href="#faq">Partners</a>
+      <a href="#faq">Careers</a>
+      <a href="#faq" class="nav-cta">Book a Site Visit — Free</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-grain" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="door-stage" id="doorStage" aria-hidden="true">
+        <div class="door-frame">
+          <svg viewBox="0 0 120 150" fill="none">
+            <rect class="door-light" x="8" y="6" width="104" height="138" rx="4" fill="url(#glow)"/>
+            <defs>
+              <radialGradient id="glow" cx="50%" cy="30%" r="75%">
+                <stop offset="0%" stop-color="#dd8a3d" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#dd8a3d" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect x="8" y="6" width="104" height="138" rx="4" stroke="rgba(246,241,230,0.35)" stroke-width="1.5"/>
+            <g class="door-panel left">
+              <rect x="10" y="8" width="49" height="134" rx="2" fill="#221c15" stroke="#e2536b" stroke-width="1.4"/>
+              <circle cx="52" cy="76" r="2" fill="#e2536b"/>
+            </g>
+            <g class="door-panel right">
+              <rect x="61" y="8" width="49" height="134" rx="2" fill="#221c15" stroke="#e2536b" stroke-width="1.4"/>
+              <circle cx="68" cy="76" r="2" fill="#e2536b"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <p class="eyebrow" style="justify-content:center;">
+        <span style="width:26px;height:1px;background:currentColor;display:block;"></span>
+        Sathyam Homes Pvt. Ltd. — Chennai
+      </p>
+      <h1>Unlock the door to<br><em>exceptional living</em></h1>
+      <p>Discover thoughtfully crafted homes designed for modern lifestyles — built on twenty years of quality, transparency, and customer trust.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn btn-solid">Featured Listings <span class="btn-arrow">→</span></a>
+        <a href="#faq" class="btn btn-outline">Book a Site Visit</a>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+  </section>
+
+  <!-- ============ QUOTE BAND ============ -->
+  <section class="band-quote">
+    <p>Beyond walls — <span>a new way of living.</span></p>
+  </section>
+
+  <!-- ============ BUILDING BEYOND EXPECTATIONS ============ -->
+  <section class="expect" id="services">
+    <div class="container">
+      <div class="reveal">
+        <div class="door-divider" data-door>
+          <svg viewBox="0 0 64 44" fill="none">
+            <g class="leaf-l"><rect x="4" y="4" width="26" height="36" rx="2" stroke="#e2536b" stroke-width="1.4"/></g>
+            <g class="leaf-r"><rect x="34" y="4" width="26" height="36" rx="2" stroke="#dd8a3d" stroke-width="1.4"/></g>
+          </svg>
+        </div>
+        <h2 class="expect-heading">
+          <span class="cap">B</span>uilding <span class="cap">B</span>eyond <span class="accent-word">Expectations</span>
+        </h2>
+        <p class="copy">With 20+ years of excellence, SHPL creates thoughtfully designed homes built on quality, transparency, and customer trust. Every project is crafted to deliver lasting value — from first sketch to final key handover.</p>
+        <a href="#projects" class="know-more">Know more <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      </div>
+
+      <div class="expect-visual reveal">
+        <div class="expect-card">
+          <svg class="room-shape" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="500" fill="none"/>
+            <ellipse cx="200" cy="470" rx="230" ry="40" fill="rgba(0,0,0,0.12)"/>
+            <rect x="40" y="260" width="180" height="90" rx="14" fill="#f6f1e6" opacity="0.92"/>
+            <rect x="60" y="230" width="60" height="46" rx="10" fill="#f6f1e6" opacity="0.7"/>
+            <rect x="130" y="230" width="60" height="46" rx="10" fill="#f6f1e6" opacity="0.7"/>
+            <circle cx="260" cy="330" r="46" fill="#221c15" opacity="0.25"/>
+            <rect x="235" y="330" width="50" height="70" rx="8" fill="#221c15" opacity="0.3"/>
+            <rect x="40" y="90" width="120" height="150" rx="6" fill="#f6f1e6" opacity="0.14"/>
+            <rect x="55" y="105" width="90" height="120" rx="2" fill="#221c15" opacity="0.18"/>
+            <circle cx="330" cy="120" r="60" fill="#f6f1e6" opacity="0.16"/>
+          </svg>
+        </div>
+        <div class="expect-badge">
+          <span class="num">20+</span>
+          <span class="lbl">Years building trusted homes across Chennai</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="projects-head reveal">
+        <h2>Explore our <span class="accent-word">projects</span></h2>
+        <p>Discover thoughtfully designed projects that blend quality, comfort, and modern living.</p>
+      </div>
+
+      <div class="project-grid reveal-stagger">
+        <article class="project-card reveal" style="--i:0">
+          <div class="project-media">
+            <svg class="fallback-room" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="260" fill="#2b2319"/>
+              <rect width="400" height="150" fill="#3a3226"/>
+              <rect x="0" y="150" width="400" height="110" fill="#1c1712"/>
+              <rect x="30" y="90" width="120" height="60" rx="4" fill="#4a4030" opacity="0.7"/>
+              <rect x="170" y="70" width="90" height="80" rx="4" fill="#4a4030" opacity="0.5"/>
+              <circle cx="330" cy="60" r="40" fill="#dd8a3d" opacity="0.35"/>
+              <rect x="60" y="170" width="280" height="60" rx="10" fill="#e2536b" opacity="0.14"/>
+            </svg>
+            <span class="status-pill">Ready to occupy</span>
+          </div>
+          <div class="project-body">
+            <h3>Sathyam Green Nest</h3>
+            <p class="project-loc">📍 Chennai</p>
+            <div class="project-specs">
+              <div class="spec"><b>3&amp;4 BHK</b>Bedrooms</div>
+              <div class="spec"><b>2</b>Baths</div>
+              <div class="spec"><b>1200 sqft</b>Area</div>
+            </div>
+            <div class="project-actions">
+              <a href="#faq" class="btn btn-dark">Download brochure</a>
+              <a href="#faq" class="btn btn-solid">Enquire now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal" style="--i:1">
+          <div class="project-media">
+            <svg class="fallback-room" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="260" fill="#2b2319"/>
+              <rect width="400" height="150" fill="#3a3226"/>
+              <rect x="0" y="150" width="400" height="110" fill="#1c1712"/>
+              <rect x="250" y="90" width="120" height="60" rx="4" fill="#4a4030" opacity="0.7"/>
+              <rect x="140" y="70" width="90" height="80" rx="4" fill="#4a4030" opacity="0.5"/>
+              <circle cx="70" cy="60" r="40" fill="#e2536b" opacity="0.3"/>
+              <rect x="60" y="170" width="280" height="60" rx="10" fill="#dd8a3d" opacity="0.16"/>
+            </svg>
+            <span class="status-pill">Ready to occupy</span>
+          </div>
+          <div class="project-body">
+            <h3>Sathyam Green Nest</h3>
+            <p class="project-loc">📍 Chennai</p>
+            <div class="project-specs">
+              <div class="spec"><b>3&amp;4 BHK</b>Bedrooms</div>
+              <div class="spec"><b>2</b>Baths</div>
+              <div class="spec"><b>1200 sqft</b>Area</div>
+            </div>
+            <div class="project-actions">
+              <a href="#faq" class="btn btn-dark">Download brochure</a>
+              <a href="#faq" class="btn btn-solid">Enquire now</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <section class="trust">
+    <div class="container reveal">
+      <span class="trust-label">Accredited &amp; recognised by</span>
+      <div class="trust-marks">
+        <span>CRISIL Rated</span>
+        <span>RERA Approved</span>
+        <span>ISO 9001</span>
+        <span>CREDAI Member</span>
+        <span>Green Building Cert.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-top reveal">
+        <div class="door-divider" data-door style="margin:0 auto 22px;">
+          <svg viewBox="0 0 64 44" fill="none">
+            <g class="leaf-l"><rect x="4" y="4" width="26" height="36" rx="2" stroke="#dd8a3d" stroke-width="1.4"/></g>
+            <g class="leaf-r"><rect x="34" y="4" width="26" height="36" rx="2" stroke="#e2536b" stroke-width="1.4"/></g>
+          </svg>
+        </div>
+        <h2>Numbers that <span class="accent-word">speak</span> for themselves</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat reveal" style="--i:0">
+          <div class="num"><span class="count" data-target="52">0</span><span class="suffix">+</span></div>
+          <div class="lbl">Projects in development</div>
+        </div>
+        <div class="stat reveal" style="--i:1">
+          <div class="num"><span class="count" data-target="48">0</span><span class="suffix">+</span></div>
+          <div class="lbl">Completed projects</div>
+        </div>
+        <div class="stat reveal" style="--i:2">
+          <div class="num"><span class="count" data-target="10">0</span><span class="suffix">CR+</span></div>
+          <div class="lbl">Total project cost</div>
+        </div>
+        <div class="stat reveal" style="--i:3">
+          <div class="num"><span class="count" data-target="18">0</span><span class="suffix">M+</span></div>
+          <div class="lbl">Square feet of property</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT + FAQ ============ -->
+  <section class="contact-faq" id="faq">
+    <div class="container">
+      <div class="contact-card reveal">
+        <div class="door-divider" data-door>
+          <svg viewBox="0 0 64 44" fill="none">
+            <g class="leaf-l"><rect x="4" y="4" width="26" height="36" rx="2" stroke="#e2536b" stroke-width="1.4"/></g>
+            <g class="leaf-r"><rect x="34" y="4" width="26" height="36" rx="2" stroke="#dd8a3d" stroke-width="1.4"/></g>
+          </svg>
+        </div>
+        <h2>Get in touch!</h2>
+        <p>Let's help you find the perfect home or investment. Our team is here to guide you every step of the way.</p>
+        <form onsubmit="return false;">
+          <div class="field"><label for="fEmail">Email</label><input id="fEmail" type="email" placeholder="you@example.com" required></div>
+          <div class="field"><label for="fName">Name</label><input id="fName" type="text" placeholder="Full name" required></div>
+          <div class="field"><label for="fMsg">Message</label><textarea id="fMsg" placeholder="Tell us what you're looking for..."></textarea></div>
+          <button type="submit" class="btn btn-solid">Submit enquiry</button>
+        </form>
+      </div>
+
+      <div class="faq-wrap reveal">
+        <h2 style="margin-bottom:26px;">Frequently asked questions</h2>
+        <div class="faq-tabs">
+          <button class="faq-tab active" data-tab="all">All</button>
+          <button class="faq-tab" data-tab="buying">Buying</button>
+          <button class="faq-tab" data-tab="selling">Selling</button>
+          <button class="faq-tab" data-tab="mortgage">Mortgage</button>
+          <button class="faq-tab" data-tab="management">Management</button>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item open" data-cat="selling">
+            <button class="faq-q"><span><span class="qn">01</span><h4 style="display:inline;">How do you determine the market value of my property?</h4></span><span class="faq-plus"></span></button>
+            <div class="faq-a"><p>We perform a Comprehensive Market Analysis by comparing your property with similar homes recently sold nearby, current listings, and expired listings — factoring in condition, location, and unique features to reach an accurate valuation.</p></div>
+          </div>
+          <div class="faq-item" data-cat="buying">
+            <button class="faq-q"><span><span class="qn">02</span><h4 style="display:inline;">What are the closing costs for a property buyer?</h4></span><span class="faq-plus"></span></button>
+            <div class="faq-a"><p>Closing costs typically include stamp duty, registration charges, legal fees, and a share of maintenance deposits. Our team provides an itemised estimate before you commit to a project.</p></div>
+          </div>
+          <div class="faq-item" data-cat="mortgage">
+            <button class="faq-q"><span><span class="qn">03</span><h4 style="display:inline;">Do I need a pre-approval letter before searching for a home?</h4></span><span class="faq-plus"></span></button>
+            <div class="faq-a"><p>A pre-approval isn't mandatory, but it sharpens your budget and speeds up the offer process once you find a home you love — we can connect you with partner lenders.</p></div>
+          </div>
+          <div class="faq-item" data-cat="management">
+            <button class="faq-q"><span><span class="qn">04</span><h4 style="display:inline;">How long does the average home selling process take?</h4></span><span class="faq-plus"></span></button>
+            <div class="faq-a"><p>Most listings move from valuation to signed sale within 60–90 days, depending on documentation readiness and market conditions in the chosen locality.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWSLETTER ============ -->
+  <section class="newsletter">
+    <div class="container">
+      <div>
+        <h3>Our newsletter</h3>
+        <p>Get new listings, project milestones, and market notes in your inbox — no spam, ever.</p>
+      </div>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name">Sathyam <b>Homes</b></span>
+        <p>8/11, First Floor, Sharmila Street, Tambaram Sanatorium, Kamakshi Colony, Chennai, Tamil Nadu 600047</p>
+        <a href="tel:04422411082" class="call-btn">📞 044 224 110 82</a>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#services">About us</a></li>
+          <li><a href="#services">Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Quick links</h5>
+        <ul>
+          <li><a href="#faq">Contact us</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#projects">Blog</a></li>
+          <li><a href="#projects">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Customer support</h5>
+        <ul>
+          <li><a href="mailto:crm@sathyamhomes.co.in">crm@sathyamhomes.co.in</a></li>
+          <li><a href="tel:04422411082">044 224 110 82</a></li>
+        </ul>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="LinkedIn">IN</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Sathyam Homes — All rights reserved.</p>
+      <p>Crafted with care in Chennai.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---- Sticky header state ----
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ---- Mobile menu ----
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('primaryNav');
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.classList.toggle('active', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('#primaryNav a:not(.has-dropdown)').forEach(a=>{
+    a.addEventListener('click', ()=>{ nav.classList.remove('open'); burger.classList.remove('active'); });
+  });
+  // Tap-to-toggle dropdown on touch/mobile
+  const dw = document.getElementById('servicesDropdown');
+  dw.querySelector('.has-dropdown').addEventListener('click', (e)=>{
+    if(window.innerWidth <= 980){ e.preventDefault(); dw.classList.toggle('open'); }
+  });
+
+  // ---- Hero door-opening intro ----
+  window.addEventListener('load', ()=>{
+    setTimeout(()=> document.getElementById('doorStage').classList.add('opened'), 350);
+  });
+
+  // ---- Scroll reveal (IntersectionObserver) ----
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18 });
+  document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+  // ---- Door dividers open on scroll ----
+  const doorIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('open');
+        doorIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-door]').forEach(el=> doorIO.observe(el));
+
+  // ---- Count-up stats ----
+  function animateCount(el){
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now){
+      const p = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(eased * target);
+      if(p < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  }
+  const statIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        animateCount(entry.target);
+        statIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count').forEach(el=> statIO.observe(el));
+
+  // ---- FAQ accordion ----
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=> i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ---- FAQ category tabs ----
+  document.querySelectorAll('.faq-tab').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      document.querySelectorAll('.faq-tab').forEach(t=> t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.tab;
+      document.querySelectorAll('.faq-item').forEach(item=>{
+        const show = cat === 'all' || item.dataset.cat === cat;
+        item.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
