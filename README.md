@@ -2,7 +2,9 @@
 
 A single-file, fully animated landing page built for **Sathyam Homes Pvt. Ltd.**, a Chennai-based real estate developer. No build tools, no dependencies to install — just one HTML file that runs anywhere.
 
-**[View live site →](#)** *(add your Netlify link here once deployed)*
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f8380347-2477-4793-a8b7-d974381ffc41/deploy-status)](https://app.netlify.com/sites/sathyamhome/deploys)
+
+### 🔗 [Live Demo](https://sathyamhome.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/kavinirfan/greenbudswebpage/tree/main)
 
 ---
 
@@ -52,8 +54,8 @@ No installation needed. Just open the file in a browser:
 
 ```bash
 # clone the repo
-git clone <your-repo-url>
-cd <your-repo-name>
+git clone https://github.com/kavinirfan/greenbudswebpage.git
+cd greenbudswebpage
 
 # open directly
 open sathyam-homes.html      # macOS
